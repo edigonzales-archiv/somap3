@@ -123,6 +123,7 @@
                     new ol.layer.Tile({
                         minResolution: 2,
                         source: new ol.source.WMTS({
+                            //urls: ['http://tiles1.catais.org/mapcache/wmts', 'http://tiles2.catais.org/mapcache/wmts', 'http://tiles3.catais.org/mapcache/wmts'],
                             url: 'http://www.catais.org/mapcache/wmts',
                             layer: 'ch.so.agi.bpav10000-grau',
                             matrixSet: 'CH1903',
@@ -139,6 +140,7 @@
                     new ol.layer.Tile({
                         maxResolution: 2,
                         source: new ol.source.WMTS({
+                            //urls: ['http://tiles1.catais.org/mapcache/wmts', 'http://tiles2.catais.org/mapcache/wmts', 'http://tiles3.catais.org/mapcache/wmts'],
                             url: 'http://www.catais.org/mapcache/wmts',
                             layer: 'ch.so.agi.grundbuchplan-grau',
                             matrixSet: 'CH1903',
@@ -161,8 +163,10 @@
                 baselayer: true,                
                 visible: false,
                 source: new ol.source.WMTS({
-                    url: 'http://www.catais.org/mapcache/wmts',
+                    //url: 'http://www.catais.org/mapcache/wmts',
+                    url: "http://www.catais.org/mapcache/wmts/1.0.0/{Layer}/default/CH1903/" + "{TileMatrix}/{TileRow}/{TileCol}",
                     layer: 'ch.so.agi.orthofoto',
+                    requestEncoding: 'REST',                    
                     matrixSet: 'CH1903',
                     format: 'image/jpeg',
                     projection: projection,
