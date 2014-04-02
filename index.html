@@ -48,18 +48,31 @@
             
             .searchbox {
                 position: absolute;
-                top: 1em;
-                left: 2em;
+                left: 1em;
+                top: 2em;
             }
             
-            input[type=search] {
-                width: 100%;
-                height: 2em;
-                color: #333;
-                border: 5px solid black; 
-                margin: 0 0 20px 0;
-                -webkit-appearance: searchfield;
-                box-sizing: border-box;
+            #searchinput {
+                width: 300px;
+            }
+
+            #searchclear {
+                position: absolute;
+                right: 5px;
+                top: 0;
+                bottom: 0;
+                height: 14px;
+                margin: auto;
+                font-size: 14px;
+                cursor: pointer;
+                color: #ccc;
+            }
+            
+            #my-layer-select {
+                right: 1em;
+                top: 2em;
+                position: absolute;
+                width: 140px;
             }
             
             
@@ -79,10 +92,24 @@
         <div class="bg-layer-select"> 
             <select id="layer-select"></select>
         </div>
-        <div class="searchbox">
         
-            <input type="search" result="5" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="Suche Adressen, Karten ..." name="s">
+        <div class="searchbox">
+            <input id="searchinput" type="search"
+                class="form-control"
+                placeholder="Suche Adressen, Grundst&uuml;cke, Karten..."
+                value="">
+            <span id="searchclear" class="glyphicon glyphicon-remove-circle"></span>
         </div>
+        
+        <select id="my-layer-select" class="form-control">
+          <option>Luftbild</option>
+          <option>Karte grau</option>
+          <option>Karte farbig</option>
+          <option>kein Hintergrund</option>
+        </select>
+
+        
+        
         <script type="text/javascript">
                         
             var projection = ol.proj.configureProj4jsProjection({
@@ -246,9 +273,12 @@
                 var bgLayerId = layer.get("layerId");
                 var isBaseLayer = layer.get("baselayer");
                 if (isBaseLayer) {
-                    $('#layer-select').append('<option value=' + bgLayerId + '>' + bgLayerName + '</option>'); 
+                    $('#layer-select').append('<option value=' + bgLayerId + '>' + bgLayerName + '</option>');          
                 }
+                
             });
+            $('#layer-select').append('<option value="">kein Hintergrund</option>');
+
             
             $('#layer-select').change(function() {
                 var selectedBgLayerId = $(this).find(':selected').val();
@@ -263,7 +293,18 @@
                     }
                 });
             });
-            $('#layer-select').trigger('change');     
+            $('#layer-select').trigger('change'); 
+            
+            $(document).ready(function() {
+                $('#searchinput').keyup(function() {
+                    $('#searchclear').toggle(Boolean($(this).val()));
+                });
+                $('#searchclear').toggle(Boolean($("#searchinput").val()));
+                $('#searchclear').click(function() {
+                    $('#searchinput').val('').focus();
+                    $(this).hide();
+                });
+            });            
             
         </script>
     </body>
