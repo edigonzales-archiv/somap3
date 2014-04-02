@@ -11,6 +11,7 @@
                 width: 100%;
                 overflow: hidden;
             }
+            
             .map {
                 position: relative;
                 margin: 0 auto;
@@ -20,10 +21,16 @@
                 min-height: 100%;
                 overflow: hidden;
             }
+            
+            .ol-zoom {
+                top: 5em;
+                left: 0.5em;
+            }
+            
             .ol-full-screen {
                 right: auto;
                 left: 0.5em;
-                top: 5em;
+                top: 9em;
             }
             
             .ol-full-screen .ol-has-tooltip:hover [role=tooltip],
@@ -38,6 +45,24 @@
                 top: 0.5em;
                 position: absolute;
             } 
+            
+            .searchbox {
+                position: absolute;
+                top: 1em;
+                left: 2em;
+            }
+            
+            input[type=search] {
+                width: 100%;
+                height: 2em;
+                color: #333;
+                border: 5px solid black; 
+                margin: 0 0 20px 0;
+                -webkit-appearance: searchfield;
+                box-sizing: border-box;
+            }
+            
+            
         </style>
         
         <script src="http://cdnjs.cloudflare.com/ajax/libs/proj4js/1.1.0/proj4js-compressed.js" type="text/javascript"></script>
@@ -54,7 +79,10 @@
         <div class="bg-layer-select"> 
             <select id="layer-select"></select>
         </div>
+        <div class="searchbox">
         
+            <input type="search" result="5" autocomplete="off" autocorrect="off" spellcheck="false" placeholder="Suche Adressen, Karten ..." name="s">
+        </div>
         <script type="text/javascript">
                         
             var projection = ol.proj.configureProj4jsProjection({
@@ -200,9 +228,9 @@
                 ol3Logo: false,
                 target: 'map',
                 layers: [
+                    layerOrtho,
                     layerGrayMap,                    
                     layerColorMap,
-                    layerOrtho,
                     layerVectors
                 ],  
                 view: new ol.View2D({
