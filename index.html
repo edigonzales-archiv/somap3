@@ -246,6 +246,67 @@
                 ]
             });
 
+            var layerBlackWhiteMap = new ol.layer.Group({
+                layerName: "Karte sw",
+                layerId: "karte_sw",  
+                baselayer: true,                
+                visible: true,
+                layers: [
+                    new ol.layer.Tile({
+                        minResolution: 2.5,
+                        source: new ol.source.WMTS({
+                            //urls: ['http://tiles1.catais.org/mapcache/wmts', 'http://tiles2.catais.org/mapcache/wmts', 'http://tiles3.catais.org/mapcache/wmts'],
+                            url: 'http://www.catais.org/mapcache/wmts',
+                            layer: 'ch.so.agi.bpav10000-sw',
+                            matrixSet: '21781',
+                            format: 'image/png',
+                            projection: projection,
+                            tileGrid: new ol.tilegrid.WMTS({
+                                origin: ol.extent.getTopLeft(projectionExtent),
+                                resolutions: [4000,3750,3500,3250,3000,2750,2500,2250,2000,1750,1500,1250,1000,750,650,500,250,100,50,20,10,5,2.5,2],
+                                matrixIds: matrixIds
+                            }),
+                        style: 'default'
+                        })
+                    }),
+                    new ol.layer.Tile({
+                        maxResolution: 2.5,
+                        minResolution: 1.5,
+                        source: new ol.source.WMTS({
+                            //urls: ['http://tiles1.catais.org/mapcache/wmts', 'http://tiles2.catais.org/mapcache/wmts', 'http://tiles3.catais.org/mapcache/wmts'],
+                            url: 'http://www.catais.org/mapcache/wmts',
+                            layer: 'ch.so.agi.bpav5000-sw',
+                            matrixSet: '21781',
+                            format: 'image/png',
+                            projection: projection,
+                            tileGrid: new ol.tilegrid.WMTS({
+                                origin: ol.extent.getTopLeft(projectionExtent),
+                                resolutions: [4000,3750,3500,3250,3000,2750,2500,2250,2000,1750,1500,1250,1000,750,650,500,250,100,50,20,10,5,2.5,2,1.5],
+                                matrixIds: matrixIds
+                            }),
+                        style: 'default'
+                        })
+                    }),                    
+                    new ol.layer.Tile({
+                        maxResolution: 1.5,
+                        source: new ol.source.WMTS({
+                            //urls: ['http://tiles1.catais.org/mapcache/wmts', 'http://tiles2.catais.org/mapcache/wmts', 'http://tiles3.catais.org/mapcache/wmts'],
+                            url: 'http://www.catais.org/mapcache/wmts',
+                            layer: 'ch.so.agi.grundbuchplan-sw',
+                            matrixSet: '21781',
+                            format: 'image/png',
+                            projection: projection,
+                            tileGrid: new ol.tilegrid.WMTS({
+                                origin: ol.extent.getTopLeft(projectionExtent),
+                                resolutions: [4000,3750,3500,3250,3000,2750,2500,2250,2000,1750,1500,1250,1000,750,650,500,250,100,50,20,10,5,2.5,2,1.5,1,0.5,0.25,0.1],
+                                matrixIds: matrixIds
+                            }),
+                        style: 'default'
+                        })
+                    })
+                ]
+            });
+            
             var layerOrtho = new ol.layer.Tile({
                 layerName: "Luftbild",
                 layerId: "luftbild",
@@ -290,6 +351,7 @@
                 target: 'map',
                 layers: [
                     layerOrtho,
+                    layerBlackWhiteMap,
                     layerGrayMap,                    
                     layerColorMap,
                     layerVectors
