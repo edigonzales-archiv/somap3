@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<title>Typehead.js Example</title>
+<head>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="typeahead.bundle.min.js"></script>
+    <script src="http://twitter.github.com/hogan.js/builds/2.0.0/hogan-2.0.0.js"></script>
+    <link rel="stylesheet" href="typeaheadjs.css">
+    <style>
+        .tt-dropdown-menu { min-width: 250px; }
+    </style>
+</head>
+<body>
+ 
+<h2>Countries that start with U</h2>
+<input type="text" class="example" />
+ 
+<script>
+var data = [
+    {
+        "value": "Ukraine",
+        "url": "http://en.wikipedia.org/wiki/Ukraine",
+        "country_code": "UA"
+    },
+    {
+        "value": "Uganda",
+        "url": "http://en.wikipedia.org/wiki/Uganda",
+        "country_code": "UG"
+    },
+    {
+        "value": "United Arab Emirates",
+        "url": "http://en.wikipedia.org/wiki/United_Arab_Emirates",
+        "country_code": "AE"
+    },
+    {
+        "value": "United Kingdom",
+        "url": "http://en.wikipedia.org/wiki/United_Kingdom",
+        "country_code": "GB"
+    },
+    {
+        "value": "United States",
+        "url": "http://en.wikipedia.org/wiki/United_States",
+        "country_code": "US"
+    },
+    {
+        "value": "Uruguay",
+        "url": "http://en.wikipedia.org/wiki/Uruguay",
+        "country_code": "UY"
+    },
+    {
+        "value": "Uzbekistan",
+        "url": "http://en.wikipedia.org/wiki/Uzbekistan",
+        "country_code": "UZ"
+    }
+];
+$('.example').typeahead({
+    name: 'example',
+    local: data,
+    limit: 7,
+    template: '<p>{{value}} ({{country_code}})</p>',
+    engine: Hogan
+}).on('typeahead:selected', function(event, datum) {
+    window.location = datum.url
+});
+</script>
+ 
+</body>
+</html>

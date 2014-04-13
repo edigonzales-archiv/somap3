@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" media="screen">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        <link href="//raw.github.com/jharding/typeahead.js-bootstrap.css/master/typeahead.js-bootstrap.css" rel="stylesheet" media="screen">
+        <script src="//cdn.jsdelivr.net/typeahead.js/0.9.3/typeahead.min.js"></script>
+        
+        <style>
+            .twitter-typeahead .tt-hint {
+                display: block;
+                height: 34px;
+                padding: 6px 12px;
+                font-size: 14px;
+                line-height: 1.428571429;
+                border: 1px solid transparent;
+                border-radius:4px;
+            }
+            .twitter-typeahead .hint-small {
+                height: 30px;
+                padding: 5px 10px;
+                font-size: 12px;
+                border-radius: 3px;
+                line-height: 1.5;
+            }
+        .twitter-typeahead .hint-large {
+            height: 45px;
+            padding: 10px 16px;
+            font-size: 18px;
+            border-radius: 6px;
+            line-height: 1.33;
+        }
+.twitter-typeahead {
+     width: 100%;
+}
+.tt-dropdown-menu {
+     width: 100%;
+}
+.tt-hint {
+     width: 100%;
+}
+        </style>
+            
+
+    </head>
+
+    <body>
+    
+        <div class="container">
+            <br/><br/>
+            <input type="text" class="form-control cities typeahead" id="citiesInput" />
+            <br/><br/>
+            <p>The values are: "italy", "france", "england", "united states", "brasil" and "spain"</p>
+        </div>
+        
+        <script type="text/javascript">
+            $(document).ready(function() {
+                 $('.cities.typeahead').typeahead({                               
+                      name: "cities",                
+                      local: ['italy', 'france', 'england', 'england2', 'england3', 'england4', 'england45', 'united states', 'brazil', 'spain']                                              
+                 });
+            });
+        </script>
+
+    
+    </body>
+          
+</html>
